@@ -1,0 +1,100 @@
+package automation;
+
+	import java.util.ArrayList;
+import jsoup;
+import java.util.List;
+
+	import org.openqa.selenium.By;
+	import org.openqa.selenium.StaleElementReferenceException;
+	import org.openqa.selenium.WebDriver;
+	import org.openqa.selenium.WebElement;
+	import org.openqa.selenium.chrome.ChromeDriver;
+	import org.openqa.selenium.interactions.Actions;
+	import org.openqa.selenium.support.ui.ExpectedConditions;
+	import org.openqa.selenium.support.ui.Select;
+	import org.openqa.selenium.support.ui.WebDriverWait;
+
+	public class test_clickable_under_given_id {
+		//for wickets only
+		
+		
+	    		
+
+
+		
+		public static void main(String[] args) {
+		
+			WebDriver driver;
+			System.setProperty("webdriver.chrome.driver", "/home/abhujeeth/Downloads/chromedriver");
+			driver =new ChromeDriver();
+		
+	    
+		    driver.get("http://analytics05.cricket.net/cricinfo/player_insight/");
+		
+		    List<WebElement> list = new ArrayList<>();
+		   
+		    WebElement list1=driver.findElement(By.id("fc-record-format"));
+		    list.add(list1);
+				List<WebElement> list2=driver.findElements(By.className("fc-records-type-filters"));
+				WebDriverWait wait1 = new WebDriverWait(driver, 20);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("fc-records-type-filters")));
+				List<WebElement> list3 = list2.get(0).findElements(By.className("fc-player-performance-filter"));
+				int i=0;String class_name1;
+				
+				//added all the elements there in the list like team batting 
+						for(WebElement elem:list3)
+						{
+							System.out.println(elem.getText());
+							list.add(elem);
+						}
+						
+						//iterating through odi,batting,team+
+						for(WebElement elem1:list)
+						{
+							System.out.println(elem1.getText());
+							//list.add(elem);
+							testcase obj=new testcase();
+							//should i do this here or not.will it prevent the fiunction from being a generic one
+							if(i==0)
+							{
+								class_name1 = "fc-records-home-tile-stat";
+							
+								//can use hashmap for storing all the records of classname
+							}
+							else 
+							{
+								
+							}
+							//create a array named classname1 and store all the values of classname here and pass it to function one by one
+							obj.clicking(elem1,driver,"fc-select-list-value");
+						}
+			      
+						try {
+								Thread.sleep(100000);
+							} 
+						catch (InterruptedException e) {
+			
+							e.printStackTrace();
+						}
+	   
+	    System.out.println("Successfully opened the website www.Store.Demoqa.com");
+
+		
+		
+	    // Close the driver
+	    driver.quit();
+
+	}
+		}
+		
+
+
+
+
+		
+
+
+	
+	
+
+
